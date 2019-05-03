@@ -41,13 +41,16 @@ class Visualizer {
       if (values[i] < 0) {
         // we have a negative value
         fill(255,0,0) ; // red for negative values
+        rect(x, y + (40 * i) , 40, values[i]) ;
       }
       else if (values[i] == 0) {
         // we have 0 so we don't need to color anything! we only need to change the size/location of the bar
+        rect(x, y, 40, 0) ;
       }
       else {
-        // we have a positive value
+        // we have a positive value!
         fill(0,255,0) ;
+        rect(x, y - (40 * i), 40, values[i]) ;
       }
     }
     //???WRITE THIS METHOD FIRST!!!
