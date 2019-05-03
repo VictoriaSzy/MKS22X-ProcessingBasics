@@ -29,7 +29,6 @@ class Visualizer {
     rect(x, y, 400, 200);
     //This is a 200x400 box.
     //The width of the visualizer is 400! This rect is the border
-
     //the line is the 0 y-value, the top is 100, the bottom is -100
     line(x, y+100, x+400, y+100);
 
@@ -37,7 +36,20 @@ class Visualizer {
     //the values in the array.
     //Negative values are red, and go below the line.
     //Positive values are green and go above the line.
-
+    
+    for (int i = 0 ; i < 10 ; i++) {
+      if (values[i] < 0) {
+        // we have a negative value
+        fill(255,0,0) ; // red for negative values
+      }
+      else if (values[i] == 0) {
+        // we have 0 so we don't need to color anything! we only need to change the size/location of the bar
+      }
+      else {
+        // we have a positive value
+        fill(0,255,0) ;
+      }
+    }
     //???WRITE THIS METHOD FIRST!!!
     //THESE ARE WRONG: They just illustrate how they could look
     fill(255, 0, 0);
