@@ -36,52 +36,33 @@ class Visualizer {
     //the values in the array.
     //Negative values are red, and go below the line.
     //Positive values are green and go above the line.
-    
-    for (int i = 0 ; i < 10 ; i++) {
-      if (values[i] < 0) {
+    //???WRITE THIS METHOD FIRST!!!
+    for (int i = 0 ; i < values.length ; i++) {
+      float val = values[i] ;
+      int l = values.length ;
+      if (val < 0) {
         // we have a negative value
-        fill(255,0,0) ; // red for negative values
-        rect(x, y + (40 * i) , 40, values[i]) ;
-      }
-      else if (values[i] == 0) {
-        // we have 0 so we don't need to color anything! we only need to change the size/location of the bar
-        rect(x, y, 40, 0) ;
+        if (val > -50 && val < 0) fill(255, 165, 0) ;
+        if (val <= -50 && val >= MIN_VALUE) fill(255, 0, 0) ;
+        int xLocation = (400 / l) * i ;
+        rect(xLocation + x, 120, 400 / l, -1 * val);
       }
       else {
-        // we have a positive value!
-        fill(0,255,0) ;
-        rect(x, y - (40 * i), 40, values[i]) ;
+        if (val > 0 && val <= 50) fill(255, 255, 0) ;
+        if (val > 50 && val <= MAX_VALUE) fill(0, 255, 0) ;
+        int xLocation = (400 / l) * i ;
+        rect(xLocation + x, 120, 400 / l, -1 * val) ;
       }
     }
-    //???WRITE THIS METHOD FIRST!!!
-    //THESE ARE WRONG: They just illustrate how they could look
-    /*fill(255, 0, 0);
-    rect(x+40, y+100, 60, 50);
-    fill(0, 255, 0);
-    rect(x+120, y+50, 60, 50);*/
-
-
-    //Width of the visualizer is 400!
-
-  
+    //Width of the visualizer is 400!  
   }
+  
   void update() {
     //???WRITE THIS METHOD SECOND!!!
     for (int i = 0; i < values.length; i++) {
-      values[i] += speeds[i]; //the speed updates the values. Do not touch this.
       //??? keep them values between max/min value so they stay in the box.
-      if (values[i] < MIN_VALUE) {
-        // we need to make it bigger
-        values[i] = MIN_VALUE ;
-      }
-      if (values[i] > MAX_VALUE) {
-        // we need to make it smaller
-        values[i] = MAX_VALUE ;
-      }
-
-      //??? reverse the speeds so the bar oscillates up/down when it reaches max/min
-
-      
+      if (values[i] <= MIN_VALUE || values[i] >= MAX_VALUE) speeds[i] *= -1 ;
+      values[i] += speeds[i]; //the speed updates the values. Do not touch this.
     }
   }
 }
