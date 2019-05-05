@@ -42,14 +42,14 @@ class Visualizer {
       int l = values.length ;
       if (val < 0) {
         // we have a negative value
-        if (val > -50 && val < 0) fill(255, 165, 0) ;
-        if (val <= -50 && val >= MIN_VALUE) fill(255, 0, 0) ;
+        if (val > -50 && val < 0) fill(255, 165, 0) ; // orange
+        if (val <= -50 && val >= MIN_VALUE) fill(255, 0, 0) ; // red
         int xLocation = (400 / l) * i ;
         rect(xLocation + x, 120, 400 / l, -1 * val);
       }
       else {
-        if (val > 0 && val <= 50) fill(255, 255, 0) ;
-        if (val > 50 && val <= MAX_VALUE) fill(0, 255, 0) ;
+        if (val > 0 && val <= 50) fill(255, 255, 0) ; // yellow
+        if (val > 50 && val <= MAX_VALUE) fill(0, 255, 0) ; // green
         int xLocation = (400 / l) * i ;
         rect(xLocation + x, 120, 400 / l, -1 * val) ;
       }
