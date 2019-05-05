@@ -16,24 +16,37 @@ void setup() {
 */
 void gasket(int levels, float v1x, float v1y, float v2x, float v2y, float v3x, float v3y) {
     //YOU WRITE THIS METHOD!
+    fill(0) ;
+    triangle(v1x, v1y, v2x, v2y, v3x, v3y) ;
+    if (levels > 1) {
+      fill(255) ;
+      float firstX = (v1x + v3x) / 2 ;
+      float firstY = (v1y + v3y) / 2 ;
+      float secondX = (v2x + v3x) / 2 ;
+      float secondY = (v2y + v3y) / 2 ;
+      float thirdX = (v1x + v2x) / 2 ;
+      float thirdY = (v1y + v2y) / 2 ;
+      triangle(firstX, firstY, secondX, secondY, thirdX, thirdY) ;
+      gasket(levels - 1, firstX, firstY, secondX, secondY, v3x, v3y) ;
+      gasket(levels - 1, firstX, firstY, v1x, v1y, thirdX, thirdY) ;
+      gasket(levels - 1, v2x, v2y, secondX, secondY, thirdX, thirdY) ;
+    }
 }
 
 void draw() { 
-  background(50);  
-  
-  fill(255);
-  text("Click the mouse to increase levels, press a key to decrease levles",20,20);
-
-  gasket(levels,0, height-10, width, height-10, width/2, 10);
+  background(255, 0, 0) ;  
+  fill(255) ;
+  text("Click the mouse to increase levels, press a key to decrease levles",20,20) ;
+  gasket(levels,0, height-10, width, height-10, width/2, 10) ;
 
  //koch(levels,width-10, height/2,10, height/3 ); 
  //other fractal you can do! This requires a bit more math, or you can look up the coordinates.
 }
 
-void mouseClicked(){ 
- levels ++;  
+void mouseClicked() { 
+ levels ++ ;  
 }
 
-void keyPressed(){
- levels --; 
+void keyPressed() {
+ levels -- ; 
 }
